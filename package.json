@@ -1,0 +1,28 @@
+{
+  "name": "team-pro-gen",
+  "version": "1.0.0",
+  "description": "stuff",
+  "main": "Index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bspur11/team-pro-gen.git"
+  },
+  "keywords": [
+    "brad"
+  ],
+  "author": "brad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bspur11/team-pro-gen/issues"
+  },
+  "homepage": "https://github.com/bspur11/team-pro-gen#readme",
+  "dependencies": {
+    "jest": "^26.6.3"
+  }
+}
