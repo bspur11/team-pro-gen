@@ -112,45 +112,46 @@ const internQuestion = [
 ];
 
 let start =
-    async function adminStart() {
+async function adminNext() {
+    await Inquirer
+        .prompt(adminQuestions)
 
-        await Inquirer
-            .prompt(adminQuestions)
+        .then(async function (userData) {
+            let managerInfo = {
+                'name': userData.name,
+                'id': JSON.parse(userData.id),
+                'email': userData.email,
+                'role': 'employee', // DEFAULT
+                'title': 'manager',
+                'officeNumber': '',
+                'gitname': '',
+                'github': '',
+                'school': ''
 
-            .then(async function (userData) {
-                let managerInfo = {
-                    'name': userData.name,
-                    'id': JSON.parse(userData.id),
-                    'email': userData.email,
-                    'role': 'employee', // DEFAULT
-                    'title': 'manager',
-                    'officeNumber': '',
-                    'gitname': '',
-                    'github': '',
-                    'school': ''
-
-                }
-                if (position = true) {
-                    employeeInfo.push(managerInfo)
-                    newemp()
-                }
-            })
-    }
+            }
+            if (position = true) {
+                employeeInfo.push(managerInfo)
+                newemp()
+            }
+        })
+}
 
 let next =
-    async function adminNext() {
-        await Inquirer
-            .prompt(adminChoices)
-            .then(async function (answers) {
-                if (answers.adminchoice === 'Add an employee to the team?') {
-                    employeeInfo.length = 0;
-                    input()
-                }
-                if (answers.adminchoice === 'Create the team HTML page?') {
-                    createteam()
-                }
-            })
-    };
+async function adminStart() {
+
+    await Inquirer
+        .prompt(adminChoices)
+        .then(async function (answers) {
+            if (answers.adminchoice === 'Add an employee to the team?') {
+                employeeInfo.length = 0;
+                input()
+            }
+            if (answers.adminchoice === 'Create the team HTML page?') {
+                createteam()
+            }
+        })
+}
+    ;
 
 let input =
     async function init() {
@@ -215,7 +216,7 @@ async function buildManager() {
             const email = employeeInfo[0].email;
             const role = employeeInfo[0].role;
             const officeNumber = employeeInfo[0].officeNumber;
-        
+
             const manager = new Manager(name, id, email, officeNumber)
             managerArr.push(manager);
 
@@ -234,7 +235,7 @@ async function buildEngineer() {
             }
             employeeInfo[0].gitname = engineerInfo.gitname;
         })
-        .then(async function() {
+        .then(async function () {
 
             const gitname = employeeInfo[0].gitname;
             let queryURL = 'https://api.github.com/users/' + gitname;
@@ -243,25 +244,25 @@ async function buildEngineer() {
                     const engineerInfo = {
                         "github": response.data.login,
                     }
-        
+
                     employeeInfo[0].github = engineerInfo.github;
-                    
+
                 })
         })
-                        setTimeout(function(){
-                        const name = employeeInfo[0].name;
-                        const id = employeeInfo[0].id;
-                        const email = employeeInfo[0].email;
-                        const role = employeeInfo[0].role;
-                        const gitname = employeeInfo[0].gitname;
-                        const github = employeeInfo[0].github;
-                    
-                        const engineer = new Engineer(name, id, email, gitname, github)
-             
-                        engineerArr.push(engineer)
-                        }, 2000);
-                    
-next()
+    setTimeout(function () {
+        const name = employeeInfo[0].name;
+        const id = employeeInfo[0].id;
+        const email = employeeInfo[0].email;
+        const role = employeeInfo[0].role;
+        const gitname = employeeInfo[0].gitname;
+        const github = employeeInfo[0].github;
+
+        const engineer = new Engineer(name, id, email, gitname, github)
+
+        engineerArr.push(engineer)
+    }, 2000);
+
+    next()
 };
 
 async function buildIntern() {
@@ -274,11 +275,11 @@ async function buildIntern() {
             }
             employeeInfo[0].school = internInfo.school;
         })
-        const name = employeeInfo[0].name;
-        const id = employeeInfo[0].id;
-        const email = employeeInfo[0].email;
-        const role = employeeInfo[0].role;
-        const school = employeeInfo[0].school;
+    const name = employeeInfo[0].name;
+    const id = employeeInfo[0].id;
+    const email = employeeInfo[0].email;
+    const role = employeeInfo[0].role;
+    const school = employeeInfo[0].school;
 
     const intern = new Intern(name, id, email, school);
     internArr.push(intern)
@@ -312,15 +313,15 @@ createteam =
             '<div id="manager">' +
             '<div class="card">' +
             '<div class="card-header bg-info">' + managerArr[0].name + '</div>' +
-                '<div class="card-body">' +
-                    '<div class=content>' +
+            '<div class="card-body">' +
+            '<div class=content>' +
 
-                    '<p>' + "ID: " + managerArr[0].id + '</p>' + '<hr>' +
-                    '<p>' + "Email: " + managerArr[0].email + '</p>' + '<hr>' +
-                    '<p>' + "Office Number: " + managerArr[0].officeNumber + '</p>' + '<hr>' +
+            '<p>' + "ID: " + managerArr[0].id + '</p>' + '<hr>' +
+            '<p>' + "Email: " + managerArr[0].email + '</p>' + '<hr>' +
+            '<p>' + "Office Number: " + managerArr[0].officeNumber + '</p>' + '<hr>' +
 
-                    '</div>' +
-                '</div>' +
+            '</div>' +
+            '</div>' +
             '<div class="card-footer bg-info">' + "Manager" + '</div>' +
             '</div>' +
             '</div>'
@@ -366,7 +367,7 @@ createteam =
             );
         }
 
-        fs.appendFileSync('./output/teampage.html', 
+        fs.appendFileSync('./output/teampage.html',
             '</div>' +
             '</div>' +
             '</container>' +
@@ -378,3 +379,4 @@ createteam =
     }
 
 start()
+
