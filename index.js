@@ -33,7 +33,7 @@ const adminChoices = [
 const adminQuestions = [
     {
         type: "input",
-        message: "Hello manager, what is your name?",
+        message: "Hello non gender specific person, what is your name?",
         name: "name"
     },
     {
