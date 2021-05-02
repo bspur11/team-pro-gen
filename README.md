@@ -1,5 +1,6 @@
 # team-pro-gen
 
+
 A Node.js application to create a simple webpage featuring your development team's roster.
 
 
@@ -25,4 +26,9 @@ and run `npm run test` from the command line.
 
 ## Github
 https://github.com/bspur11/team-pro-gen.git
+
+
+![image](https://user-images.githubusercontent.com/63411329/116826963-c085b700-ab64-11eb-885e-1f357751d0f3.png)
+
+![image](https://user-images.githubusercontent.com/63411329/116827258-0db65880-ab66-11eb-81c9-e0bdc19025b2.png)
 
